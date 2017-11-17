@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+     <!-- Configuring DataSource Object in Spring Bean Configuration file it is the default implementation class provided by
+     Spring people inside this method they are simply getting connetion using connetion object
+     They are not providing any connetionpooling and this data source is not usefull for global transactions 
+     For Oracle Connetion Information
+     -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+	  <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	  <property name="username" value="system"></property>
+	  <property name="password" value="system"></property>
+	</bean>
+	
+	<!-- Jdbc Template class -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	  <property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Dao class -->
+	<bean id="customerDao" class="com.jdbctemplate.autogenrated.dao.CustomerDao">
+	  <constructor-arg ref="jdbcTemplate"></constructor-arg>
+	</bean>
+
+</beans>
