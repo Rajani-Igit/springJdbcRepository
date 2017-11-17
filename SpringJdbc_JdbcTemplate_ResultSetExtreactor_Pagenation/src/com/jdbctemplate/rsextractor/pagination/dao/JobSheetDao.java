@@ -48,7 +48,6 @@ public class JobSheetDao {
 		int count = 1;
 		while(resultSet.next() && count <= endIndex) {
 			if(count >= startIndex  && count <= endIndex) {
-				System.out.println("inside if block");
 				jobSheetBo = new JobSheetBo();	
 				jobSheetBo.setJobSheetId(resultSet.getInt(1));
 				jobSheetBo.setJobSheetDate(resultSet.getDate(2));
