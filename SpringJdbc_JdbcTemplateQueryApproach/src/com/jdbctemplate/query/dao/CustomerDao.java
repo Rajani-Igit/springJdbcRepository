@@ -26,6 +26,9 @@ public class CustomerDao {
 
   public CustomerDao(JdbcTemplate jdbcTemplate) {
 	this.jdbcTemplate = jdbcTemplate;
+	for(Class subClass : jdbcTemplate.getClass().getClasses()) {
+		System.out.println(subClass);
+	}
   }
   
   public int getCustomerCount() {
@@ -34,6 +37,7 @@ public class CustomerDao {
   
   public Object getCustomerFirstName(String mobileNo) {
 	   return jdbcTemplate.queryForObject(SQL_FND_FIRST_NM_BASED_ON_MOBILE_NO, String.class, new Object[] {mobileNo});
+	   
   }
   
   public CustomerBo getCustomerDetails(String mobileNo) {

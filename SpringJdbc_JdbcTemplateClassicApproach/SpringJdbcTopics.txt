@@ -1,0 +1,154 @@
+
+Types of SpringJDBC:-
+---------------------
+
+	1)JDBCTemplate
+	2)NamedParameter JDBC Template
+	3)SimpleJDBC Template
+	4)Simple JDBC call or JDBC insert
+	5)Mapping Sql Operation as subclass
+
+Difference between JPA(ORM Technologies) and Spring JDBC :-
+-----------------------------------------------------------
+
+	1)If Large volume of Data(SpringJdbc)
+	2)If we are not migrating from one databases to another we should not use Spring ORM
+
+Differencs between JDBC and Spring JDBC :-
+------------------------------------------
+
+	1)Bioler Plate Code
+	2)Checked exceptions are replaced with SpringUnchecked exceptions(Exception Wrapping)
+	3)JDBC will allow only Local Transactions.Spring JDBC will allow global Transactions
+	4)only positional parameters are apllicable but incase of SpringJdbc it will support Named Parameters
+	5)Resource Closing 
+	6)It will follw Template Method Design pattern so we can migrate from one technology another technology very easily with minimal changes
+
+when we should go for SpringJdbc over JPA or JavaJDBC?
+	-->In order to answer this question we have to know types of applications existed.based on the requirement and utilizations network traffic of the application
+	we should choose the technologies. its not like for every thing we can use JPA Technologies.There are areas we should not use JPA Technologies also
+
+Three types of applications are there :-
+---------------------------------------
+1 stand-alone application/Desktop Applications :-No of users are very less
+2 enterprise application
+     this is divided into 2 parts
+        1- distributed application solution
+                          
+           1) web application solutions
+ 
+             this is divide into two parts(customer to business(c2b) and business to business(b2b)
+                1) c2b ------>
+                      i) personalized application solution
+                           example -->  website made by considering single user like facebook. after login you will get your related information 
+                
+                       ii)  group of customer centric application solution
+                            example ---> flipkart, amazon are the websites use by group of people 
+                2) b2b ------>
+                      i) partnarship related application solution
+                          example --> big bazar and payback
+                     
+                      ii) internal use related applications
+                           example ---> distributor and provider
+
+           2)- integration application solutions
+                         example ---> integraion with web services
+
+3 Batch processing application
+     if volume of data we want to store at a time we go for batch processing programming using pl-sql it will possible
+
+
+
+Difference between orm and spring jdbc :-
+-----------------------------------------
+
+   ##-- if you have to fetch large volume of data then you should go for spring jdbc instead of any oram framework like jpa, hibernate.
+        beacuse orm framework fetch the all data with its assosiation.data in the form of object and directly dump into java application 
+        which is performance problem for large application in such case we should go for spring jdbc instead of orm framework.
+
+
+## Difference between internet and intra net :-
+
+Internet
+---------
+
+1. Internet is wide network of computers and is open for all.
+2. Internet itself contains a large number of intranets.
+3. The number of users who use internet is Unlimited.
+4. The Visitors traffic is unlimited.
+5. Internet contains different source of information and is available for all.
+
+Intranet
+---------
+
+1. Intranet is also a network of computers designed for a specific group of users.
+2. Intranet can be accessed from Internet but with restrictions.
+3. The number of users is limited.
+4. The traffic allowed is also limited.
+5. Intranet contains only specific group information.
+
+	Therefore the Internet is an open, public space, while an intranet is designed to be a private space. 
+	An intranet may be accessible from the Internet, but it is protected by a password and accessible only to authorized users.
+	
+	Two Approaches to Implement JDBCTemplate class
+	1)Classic Approach
+	2)Query Based Approach
+	
+	1)Classic Approch :-
+	
+		  i)CallBackMechanism / executor Approach
+	      ii)Two phase execution / Two Codemodules
+	        a)creator
+	        b)callback	 
+
+Types of Operations :-
+
+DDL  :-
+DCL  :-
+DTL  :-
+DQL  :-
+DML  :-
+
+   ##-->Out of this languages we will use only DQL ,DML .Bcz Data Model will be prepaired before start of devlopment of application.For that Data Model 
+   they will create users and will give you those credentials
+   ##-->Those credentials will not have any acess permissions,means we can not create table we can not grant permissions and we can not rollback once we commited
+   ##-->For each and every class we will have Two Approaches 
+   1)Classic
+   2)Query
+   
+   1)Classic
+   ##-->For each approach we will be working on DQL(select query's) and DML(insert ,update ,delete) operations.
+   
+   Difference Between Statement and PreparedStatement  :-
+   
+   ##-->Both Objects are used to Execute the Querys
+     1)If use Statement we will face SQLInjections.bcz it will concat to original query
+     2)Performence problem bcz for each and request it will compile
+     
+     ##-->If the query is dynamic we must and should use PreparedStatement
+     If the Query is Static we have to think weather we should use Statement or PreparedStatement
+     
+     ##-->If you are building dynamic query by using statement object one can not understand what is query and what is substitute values bcz we are writing by using concantination
+   
+     ##-->All the Over riding methods of execute(creator ,callback)
+
+  2)Query
+  
+  ##-->jdbcTemplate.queryForInt()   --> It is only For Int and It was Deprecated
+  ##-->jdbcTemplate.queryForObject()--> It is for returning one column of one record(For All Primitives like String ,Long ,..) 
+  ##-->jdbcTemplate.queryForObject()--> With RowMapper Impl Class using this we can fetch one record of data
+  ##-->jdbcTemplate.query()         --> Used to fetch List of records of data from RowMapper as well as ResultSetExtractor
+  
+  ## -->By Using RowMapper and ResultSetExtractor we can fetch Group of records of data
+  But the difference is execution control will be not available in RowMapper class
+
+
+
+
+
+
+
+
+
+
+
