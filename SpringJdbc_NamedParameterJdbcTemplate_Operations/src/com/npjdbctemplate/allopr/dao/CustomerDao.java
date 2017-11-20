@@ -24,7 +24,7 @@ public class CustomerDao {
 	 *  
 	 *  There are disadvantages of working with positional paramter
 	 *  1)one can not simply substitute the values of positional parameters
-	 *  2)if we misplace the position of value may be it miss leads to exception or misplacing of the data
+	 *  2)if we misplace the position of value may be it miss leads to exception or misplacing of the data.main intention is to avoid kayas(confussion) problem
 	 *  
 	 *  In case of NamedParameterJdbcTemplate Approach we can perform Insert ,Update ,Delete ,select but we have to provide Named Parameter which is start 
 	 *  with colon(:) before it we have to specify space so that it will identify that this should be replaced with the value at runtime.
@@ -104,6 +104,7 @@ public class CustomerDao {
 	  return namedParameterJdbcTemplate.update(SQL_UPD_CUSTOMER_BY_CUST_NO, paramMap);
   } 
   
+  //BeanPropertyRowMapper is a class it will directly binds the propertys to Bean Directly
   private final class CustomerDetailsRowMapper implements RowMapper<CustomerBo>{
 	     CustomerBo customerBo;
 		@Override
