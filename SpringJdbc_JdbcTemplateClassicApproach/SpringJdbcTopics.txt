@@ -139,13 +139,93 @@ DML  :-
   ##-->jdbcTemplate.queryForObject()--> With RowMapper Impl Class using this we can fetch one record of data
   ##-->jdbcTemplate.query()         --> Used to fetch List of records of data from RowMapper as well as ResultSetExtractor
   
-  ## -->By Using RowMapper and ResultSetExtractor we can fetch Group of records of data
-  But the difference is execution control will be not available in RowMapper class
+  ## -->By Using RowMapper and ResultSetExtractor we can fetch Group of records of data. But the difference is execution control will not available
+   in RowMapper class bcz it will internally implemented in such a way by JDBCTEMPLATE class
+   
+ 2)NamedParameterJdbcTemplate
+ 
+ ## This is another way of performing persistance logic. What ever the Operation we can have by using JDBCTEMPLATE the same will be performed by using 
+ NamedParameterJdbcTemplate class.Here one change is that We have to pass NamedPaameters insted of positional Parameters.In order to avoid the kayas
+ (Confussion) using positional parameters happylu we can use Named Parameters
+ 
+## By using this we can perform select a Group or single record or single record of a column and update ,insert ,delete operations we can perform
+## We can provide the substitute values by using either of Three ways
 
+  1)Using Map  :- Here we have to pass keys as NamedParameters and values as corresponding type values
+  2)SqlParameterSource
+	 *    -->It is an interface and contains two implementation classes are there
+	 *    1)MapSqlParameterSource
+	 *    2)BeanPropertySqlParameterSource
+	 
+## Using either of three ways we can set Parameters
 
+  1)If you want a single column record of data you can call same method where we used in JdbcTemplate class queryForInt or queryForObject with three parameters
+  and third parameter is Map i.e Named Parameter we have to pass
+  2)If you want a List of records we have to wrire query and if you want to update ,insert ,delete all these operations we can perform by using 
+  update method where we can change only query
+  
+ 3)SimpleJdbcTemplate -2.0 version
+ (JdbcTemplate+NamedParameterJdbcTemplate)
+ 
+ ## It is the comination of JdbcTemplate and NamedParameterJdbcTemplate class but it does not mean that we shoul not use both features at t time inside 
+ ApplicationDevlopment
+ 
+ ## This class wa Intoduced in 2.5 version of spring release
+ 
+ Spring 2.0    JDK 1.4 supports
+ ----------
+ 
+  1) JdbcTemplate
+  2) NamedParameterJdbcTemplate
 
+Spring 2.5  JDK 1.4 and JDK 1.5supports(Here Genrics and Concurrent Api are introduced in java )
+ -->In previous version releases means in 1.4 these classes are not devlopd based on All These Api s.If they modified all the applications are running on 
+ previous versions will not work. so that is the reason they provided one more class called SimpleJdbcTemplate.Later release of Spring 3.0 version
+ They provided JDK 1.5 is the minimum version so all the classes are re written according to jdk 1.5 and they removed this class as it is duplicating the 
+ Remaing classes
 
+  1) JdbcTemplate
+  2)NamedParameterJdbcTemplate
+  3)SimpleJdbcTemplate
+  
+  4)SimpleJdbcInsert / SimpleJdbcCall
+  
+  ## The names itself are saying these are usefull to perform insert and call operations
+  --> Here we are not required to write any querys to perform the operations.these are usefull for perfrming DataBase independent Querys
+  -->To perform the the operations we have to provide the Table name or procedure name or column name that you want to retrive the data from and call 
+     the execute method by passing Parameter Map or MapSqlParameterSource or BeanPropertySqlParameterSource
 
+  There are 3 ways we can pass these paramters 
+	 *  1)Map by declaring parameters names as keys and values as objects
+	 *  2)SqlParameterSource
+	 *    -->It is an interface and contains two implementation classes are there
+	 *    1)MapSqlParameterSource
+	 *    2)BeanPropertySqlParameterSource 
+
+-->To use third way BeanAttributes and Table coumn names should be same.Then directly we can send that bean as attribute to its execute method
+
+  5)MappingSqlOperationsAsSubclasses
+  
+  JDBC Api for Persistance
+  
+  JDO(Java Data Object) But the traslation of SunMicrosystems to Oracle This Api Documentation Was released.But Oracle People supports JPA(ORM) Technologies
+  Over JDBC .But Actually Sun People Are Against to ORM Technology due to drawback of It will not suitable to Large Scale Application Devlpoment
+  
+  Unfortunately This API is not yet released>But this class is devloped based on This Api only.All SqlQuerys Having Subclasse
+  which are child classes of 
+  
+  It contains two classes
+	 * 
+	 *   1)SqlUpdate
+	 *   
+	 *   2)SqlQuery
+	 *   
+	 *      |-> MappingSqlQuery
+	 * 
+	 * Second class contain child class These classes are usefull to perform insert ,update ,delete ,querying operations.Here we have to write a class
+	 * that extends from any of the classes.incase of MappingSqlQuery we have to override one method mapRow incase of SqlUpdate you just can call
+	 * update() on supre class object so that method is not available inside the super class ,then child class method will be called
+   
 
 
 
