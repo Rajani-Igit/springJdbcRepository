@@ -32,7 +32,7 @@ public class CustomerDao {
 	 *  
 	 *  There are 3 ways we can pass these paramters 
 	 *  1)Map by declaring parameters names as keys and values as objects
-	 *  2)ParameterSource
+	 *  2)SqlParameterSource
 	 *    -->It is an interface and contains two implementation classes are there
 	 *    1)MapSqlParameterSource
 	 *    2)BeanPropertySqlParameterSource
